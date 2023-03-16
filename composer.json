@@ -10,6 +10,8 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "livewire/livewire": "^2.12",
+        "power-components/livewire-powergrid": "^3.7",
         "protonemedia/laravel-splade-breeze": "^2.5"
     },
     "require-dev": {
