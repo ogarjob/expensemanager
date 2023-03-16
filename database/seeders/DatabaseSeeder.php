@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
 //         ]);
         Expense::factory(70)->create();
         Expense::factory(7)->create(['status'   => 'In progress']);
-        Expense::factory(8)->create(['status'   => 'In progress',]);
+        Expense::factory(8)->create(['status'   => 'New']);
     }
 }

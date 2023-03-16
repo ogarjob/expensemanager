@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
+            $table->date('date');
             $table->string('merchant')->nullable();
             $table->float('total', 10, 2);
-            $table->string('status')->default('In Progress');
+            $table->enum('status', ['Reimbursed', 'In Progress', 'New'])->default('In Progress');
             $table->text('comment')->nullable();
             $table->string('receipt')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
