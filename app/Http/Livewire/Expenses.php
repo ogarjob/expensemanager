@@ -28,9 +28,9 @@ final class Expenses extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(25)
                 ->showRecordCount(),
         ];
     }
@@ -85,7 +85,6 @@ final class Expenses extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
             ->addColumn('date_formatted', fn (Expense $model) => Carbon::parse($model->date)->format('d/m/Y'))
             ->addColumn('merchant')
 
@@ -96,9 +95,7 @@ final class Expenses extends PowerGridComponent
 
             ->addColumn('total')
             ->addColumn('status')
-            ->addColumn('comment')
-            ->addColumn('created_at_formatted', fn (Expense $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (Expense $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('comment');
     }
 
     /*
@@ -118,9 +115,6 @@ final class Expenses extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->makeInputRange(),
-
             Column::make('DATE', 'date_formatted', 'date')
                 ->searchable()
                 ->sortable()
@@ -131,9 +125,7 @@ final class Expenses extends PowerGridComponent
                 ->searchable()
                 ->makeInputText(),
 
-            Column::make('TOTAL', 'total')
-                ->sortable()
-                ->searchable(),
+            Column::make('TOTAL', 'total'),
 
             Column::make('STATUS', 'status')
                 ->sortable()
@@ -142,18 +134,8 @@ final class Expenses extends PowerGridComponent
 
             Column::make('COMMENT', 'comment')
                 ->sortable()
-                ->searchable(),
-
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
-
-            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
-
+                ->makeInputText(),
         ]
 ;
     }
@@ -172,21 +154,25 @@ final class Expenses extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
-    public function actions(): array
-    {
+   public function actions(): array
+   {
        return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('expense.edit', ['expense' => 'id']),
-
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('expense.destroy', ['expense' => 'id'])
-               ->method('delete')
-        ];
-    }
-    */
+           Button::add('edit')
+               ->caption('Edit')
+               ->class('bg-blue-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->openModal('edit-expense', ['expense' => 'id']),
+       ];
+//      return [
+//          Button::make('edit', 'Edit')
+//              ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+//              ->route('expense.edit', ['expense' => 'id']),
+//
+//          Button::make('destroy', 'Delete')
+//              ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+//              ->route('expense.destroy', ['expense' => 'id'])
+//              ->method('delete')
+//       ];
+   }
 
     /*
     |--------------------------------------------------------------------------
@@ -196,7 +182,7 @@ final class Expenses extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Expense Action Rules.
      *
      * @return array<int, RuleActions>

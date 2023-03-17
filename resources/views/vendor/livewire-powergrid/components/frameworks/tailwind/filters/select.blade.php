@@ -12,7 +12,7 @@
             $theme->baseClass,
         ]) style="{{ $theme->baseStyle }}">
             @if(!$inline)
-                <label for="input_{{ data_get($select, 'dataField') }}" class="text-slate-700 dark:text-slate-300">{{ data_get($select, 'label')  }}</label>
+                <label for="input_{{ data_get($select, 'dataField') }}" class="text-slate-700">{{ data_get($select, 'label')  }}</label>
             @endif
                 <div @class(['pt-1' => !$inline, 'relative'])>
                     <select class="power_grid {{ $theme->selectClass }} {{ $class }} {{ data_get($column, 'headerClass') }}"
@@ -31,7 +31,7 @@
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-700">
-                        <x-livewire-powergrid::icons.down class="w-4 h-4 dark:text-gray-300"/>
+                        <x-livewire-powergrid::icons.down class="w-4 h-4"/>
                     </div>
                 </div>
         </div>

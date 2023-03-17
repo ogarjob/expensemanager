@@ -20,6 +20,7 @@ class ExpenseFactory extends Factory
         $merchants = ['Electronics', 'Taxi', 'Restaurant', 'Office supplies', 'Parking', 'Breakfast', 'Hotel', 'Airline', 'Parking', 'Ride sharing', 'Fast food', 'Rental car', 'Shuttle'];
         return [
             'user_id'   => User::factory(),
+            'date'      => now(),
             'merchant'  => collect($merchants)->random(),
             'total'     => mt_rand(10, 300) * 100,
             'status'    => 'Reimbursed',

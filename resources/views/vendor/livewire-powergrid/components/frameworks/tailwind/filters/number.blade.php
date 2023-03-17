@@ -8,7 +8,7 @@
     @if(filled($number))
         <div class="@if(!$inline) p-2 @endif">
             @if(!$inline)
-                <label class="text-gray-700 dark:text-gray-300">{{ data_get($number, 'label') }}</label>
+                <label class="text-gray-700">{{ data_get($number, 'label') }}</label>
             @endif
             <div @class([
                 'sm:flex w-full' => !$inline,
