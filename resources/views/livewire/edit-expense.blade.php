@@ -4,7 +4,7 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="px-6 py-6 lg:px-8">
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add Expense</h3>
-                <form class="space-y-6 x-submit" action="{{ route('api.expenses.update', $expense) }}" method="POST">
+                <form class="space-y-6 x-submit" data-then="reload" action="{{ route('api.expenses.update', $expense) }}" method="POST">
                     @method('PUT')
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         <div>

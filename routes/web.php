@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return to_route('expenses.index');
 });
 
 Route::get('/dashboard', function () {
