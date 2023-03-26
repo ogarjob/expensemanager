@@ -1,0 +1,8 @@
+composer require protonemedia/laravel-splade-breeze
+php artisan breeze:install
+
+composer require livewire/livewire  
+php artisan vendor:publish --tag=livewire-powergrid-config
+php artisan vendor:publish --tag=livewire-powergrid-views
+php artisan vendor:publish --tag=livewire-powergrid-lang
+
