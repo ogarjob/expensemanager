@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ExpenseController extends Controller
 {
@@ -18,6 +19,8 @@ class ExpenseController extends Controller
             'total'     => 'required',
             'comment'   => '',
         ]);
+        $path = $request->file('receipt')?->store('uploads');
+        $attributes['receipt'] = $path;
         $attributes['status'] = 'New';
         auth()->user()->expenses()->create($attributes);
 
@@ -35,6 +38,8 @@ class ExpenseController extends Controller
             'total'     => 'required',
             'comment'   => '',
         ]);
+        $path = $request->file('receipt')?->store('uploads');
+        $attributes['receipt'] = $path ?? $expense->receipt;
         $expense->update($attributes);
 
         return Response::api('Updated Successfully');
