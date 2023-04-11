@@ -14,10 +14,6 @@ class EditExpense extends ModalComponent
     {
         $this->expense = Expense::find($expense);
     }
-    public static function modalMaxWidth(): string
-    {
-        return '5xl';
-    }
 
     public function render(Expense $expense)
     {
@@ -25,4 +21,5 @@ class EditExpense extends ModalComponent
 
         return view('livewire.edit-expense', compact('expenses', 'expense'));
     }
+
 }
