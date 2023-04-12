@@ -125,7 +125,10 @@ final class Expenses extends PowerGridComponent
                 ->searchable()
                 ->makeInputText(),
 
-            Column::make('TOTAL', 'total'),
+            Column::make('TOTAL', 'total')
+                ->makeInputRange()
+                ->searchable()
+                ->sortable(),
 
             Column::make('STATUS', 'status')
                 ->sortable()
@@ -159,7 +162,7 @@ final class Expenses extends PowerGridComponent
        return [
            Button::add('edit')
                ->caption('Edit')
-               ->class('bg-blue-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->class('text-white text-xs font-bold mb-3 py-2 px-3 rounded bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-xs')
                ->openModal('edit-expense', ['expense' => 'id']),
        ];
 //      return [
