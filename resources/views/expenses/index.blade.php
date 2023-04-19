@@ -17,8 +17,8 @@
         </div>
     </div>
     <!-- Main modal -->
-    <div id="expensesCreate" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-        <div class="relative w-full h-full  md:h-auto max-w-5xl">
+    <div id="expensesCreate" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full" style="background-color: rgba(107, 114, 128, 0.75);">
+        <div class="relative w-full h-full  md:h-auto max-w-3xl">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="expensesCreate">
@@ -27,13 +27,13 @@
                 </button>
                 <div class="px-6 py-6 lg:px-8">
                     <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add Expense</h3>
-                    <form class="space-y-6 x-submit" data-then="reload" action="{{ route('api.expenses.store') }}" method="POST">
+                    <form class="space-y-6 x-submit" data-then="reload" action="{{ route('api.expenses.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                             <div>
                                 <div>
                                     <label for="merchant" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Merchant</label>
-                                    <select name="merchant" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-5" required>
+                                    <select name="merchant" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3" required>
                                         <option></option>
                                         @foreach($expenses->pluck('merchant')->unique() as $merchant)
                                             <option value="{{ $merchant }}">{{ $merchant }}</option>
@@ -46,16 +46,16 @@
                                         <span class="absolute inset-y-0  flex items-center pl-3">
                                             <span class="text-gray-400">₦</span>
                                         </span>
-                                        <input id="total" name="total" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white pl-8 mb-5" required>
+                                        <input id="total" name="total" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white pl-8 mb-3" required>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                                    <input type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-5" required>
+                                    <input type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3" required>
                                 </div>
                                 <div>
                                     <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Comment</label>
-                                    <textarea name="comment" id="comment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-5"></textarea>
+                                    <textarea name="comment" id="comment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3"></textarea>
                                 </div>
                             </div>
                             <div>
