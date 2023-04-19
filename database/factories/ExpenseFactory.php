@@ -25,7 +25,7 @@ class ExpenseFactory extends Factory
             'total'     => mt_rand(10, 300) * 100,
             'status'    => 'Reimbursed',
             'comment'   => 'Expense from my business trip',
-            'receipt'   => 'default-receipt.png'
+            'receipt'   => 'uploads/default-receipt.png'
         ];
     }
 }
