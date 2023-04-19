@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('date');
             $table->string('merchant')->nullable();
-            $table->float('price', 10);
+            $table->float('total', 10);
             $table->enum('status', ['Reimbursed', 'In Progress', 'New'])->default('In Progress');
             $table->text('comment')->nullable();
             $table->string('receipt')->nullable();
