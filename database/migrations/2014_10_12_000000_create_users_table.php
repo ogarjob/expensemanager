@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->enum('type', ['admin', 'employee'])->nullable()->default('employee');
             $table->integer('login_count')->default(0);
+            $table->timestamp('last_login')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
